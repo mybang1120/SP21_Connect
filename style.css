@@ -1,0 +1,14 @@
+.div {
+    position: absolute;
+    top: 4vh;
+    right:2vw;
+    left: 2vw;
+    text-align: justify;
+}
+.design {
+    color:black;
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    font-size: 4.5vh;
+}

@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="style.css"/>
+        <script type="text/javascript">
+            let colors = ["#F64C4C","#59F64C","#0C00FF","#AE32E1","#39D417","#F6E809","#F609E0","#1885D1","#FF0000"]
+            window.addEventListener('load',init);
+            function init(){
+                
+                let text1 = document.getElementById("txt1");
+                let text2 = document.getElementById("txt2");
+                let text3 = document.getElementById("txt3");
+                let text4 = document.getElementById("txt4");
+                let text5 = document.getElementById("txt5");
+                let text6 = document.getElementById("txt6");
+                let text7 = document.getElementById("txt7");
+                let text8 = document.getElementById("txt8");
+                let text9 = document.getElementById("txt9");
+                let text10 = document.getElementById("txt10");
+                let text11 = document.getElementById("txt11");
+
+                text1.addEventListener('mouseover', displayTxt);
+                text1.addEventListener('mouseout', goBack);
+                text2.addEventListener('mouseover', displayTxt);
+                text2.addEventListener('mouseout', goBack);
+                text3.addEventListener('mouseover', displayTxt);
+                text3.addEventListener('mouseout', goBack);
+                text4.addEventListener('mouseover', displayTxt);
+                text4.addEventListener('mouseout', goBack);
+                text5.addEventListener('mouseover', displayTxt);
+                text5.addEventListener('mouseout', goBack);
+                text6.addEventListener('mouseover', displayTxt);
+                text6.addEventListener('mouseout', goBack);
+                text7.addEventListener('mouseover', displayTxt);
+                text7.addEventListener('mouseout', goBack);
+                text8.addEventListener('mouseover', displayTxt);
+                text8.addEventListener('mouseout', goBack);
+                text9.addEventListener('mouseover', displayTxt);
+                text9.addEventListener('mouseout', goBack);
+                text10.addEventListener('mouseover', displayTxt);
+                text10.addEventListener('mouseout', goBack);
+                text11.addEventListener('mouseover', displayTxt);
+                text11.addEventListener('mouseout', goBack);
+
+
+                function displayTxt(){
+                    //colorChange.innerHTML=txt;
+                    let colorPick= colors[Math.floor(Math.random() * 9)];
+                    this.style.color=colorPick;
+                    this.style.background ="white";
+
+                    let bodyElement = document.getElementById("body");
+                    bodyElement.addEventListener('mouseover',bgChange);
+                    function bgChange(){
+                        bodyElement.style.background =colorPick;
+                    }
+                }
+                function goBack(){
+                    this.style.color="#2A2A2A";
+                    this.style.background="black";
+                }
+            }
+        </script>
+    </head>
+    <body id="body">
+        <div class="div">
+            <span id="txt1" class="design">Everything is designed one way or another. </span>
+            <span id="txt2" class="design">Some objects are designed well, while others are not; </span>
+            <span id="txt3" class="design">some are designed pretentiously, others unassumingly; </span>
+            <span id="txt4" class="design"> are designed to optimize materials and techniques, while others are waste full; </span>
+            <span id="txt5" class="design"> are approachable and understandable, others instead trade on their unattainability. </span>
+            <span id="txt6" class="design">Design takes them all in, from chandeliers to pencils, from airplanes to computer screens, from the interior of a theater to the receipt at a department store's check out. </span>
+            <span id="txt7" class="design">While some objects naturally attract our attention for their extraordinary character and desirability </span><br></br>
+            <span id="txt8" class="design"> - an eccentric and expensive pair of sneakers, for instance, or a gleaming sports car - many others are so apparently ordinary as to go unnoticed. </span>
+            <span id="txt9" class="design"> Every day we use dozens of them, from elastic bands to Band-Aids, erasers, and mascara wands.</span>
+            <span id="txt10" class="design"> If they work well, chances are we won't pay them much attention. </span>
+            <span id="txt11" class="design">However, in spite of their modest price and demure presence, some of these things are true masterpieces of the art of design and deserve our unconditional admiration.</span>
+        </div>
+    </body>
+</html>
