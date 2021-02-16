@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+    </head>
+    <body style="position: fixed; text-align:center; top: 45vh; left: 42vw; font-family: 'Courier New', Courier, monospace;">
+        How was your day today?
+        <form method="POST" action="/formdata">
+            <label for="data">  </label>
+            <select id="emojis" name="emojis">
+                <option value="😀">😀</option>
+                <option value="😆">😆</option>
+                <option value="😅">😅</option>
+                <option value="😂">😂</option>
+                <option value="😇">😇</option>
+                <option value="🥰">🥰</option>
+                <option value="😞">😞</option>
+                <option value="😖">😖</option>
+                <option value="🥺">🥺</option>
+                <option value="🤯">🤯</option>
+                <option value="🥵">🥵</option>
+                <option value="😰">😰</option>
+                <option value="😱">😱</option>
+                <option value="🤬">🤬</option>
+            </select>
+            <!--<input type="text" name="data" value="Enter Text">-->
+            <input type="color" name="color">
+            <input type="submit" name="submit" value="Submit">
+            <br></br>
+            How big was your feeling?
+            <input type="range" name="size" min="1" max="50" style="position: fixed; top: 55vh; left: 45vw">
+        </form>
+        </form>
+    </body>
+</html>
