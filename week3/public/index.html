@@ -1,0 +1,115 @@
+<html>
+    <title>JOURNAL</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace; 
+            color:rgb(0, 0, 0); 
+            position: absolute; 
+            top: 7vh; 
+            left: 20vw; 
+            right:20vw;
+            font-size: 2hw;
+            text-align: center;
+        }
+        hr{
+            border: none;
+            border-top: 3px double rgb(0, 38, 255);
+            color: rgb(38, 0, 255);
+            overflow: visible;
+            text-align: center;
+            width: 40vw;
+            height: 5px;
+        }
+        #button{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 5vh;
+            color:white;
+            background-color: black;
+            width:fit-content;
+            height: 6vh;
+            border-radius:0px;
+            border-color: black;
+            border-width: 0.5px;
+        }
+        #textfield{
+            border-color: black;
+            background-color: rgb(255, 255, 255);
+            font-family: 'Courier New', Courier, monospace;
+            width:40vw;
+            height: 20vh;
+            border-radius:0px;
+        }
+        #emojis{
+            font-size: 5vh;
+            height: 6vh;
+            width: fit-content;
+        }
+        #dateInput{
+            font-size: 3vh;
+            height: 6vh;
+            width:fit-content;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #dateInput2{
+            font-size: 3vh;
+            height: 6vh;
+            width:fit-content;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #colorPicker{
+            height: 5vh;
+            width: 6vh;
+        }
+       
+    </style>
+    <script type="text/javascript">
+        window.addEventListener('load',init);
+       function init(){
+           let currentDate=new Date();
+           let date=currentDate.getFullYear()+'-0'+(currentDate.getMonth()+1)+'-'+currentDate.getDate(); 
+           console.log(date);
+           document.getElementById("dateInput").value = date;
+           document.getElementById("dateInput2").value = date;
+       }
+   </script>
+    <body>
+        <div style="font-size:4vw; color:rgb(0, 0, 0); font-style:bold">Emoji Journal</div>
+            <form method="POST" action="/formdata">
+                <label for="data">Select emoji and color that describe your feeling today</label>
+                <br /><br />
+                <input type="date" id="dateInput" name="cal" value="2018-07-22" min="2021-01-01" max="2021-12-31">
+                <br /><br />
+                <select id="emojis" name="emoji">
+                    <option value="😀">😀</option>
+                    <option value="😆">😆</option>
+                    <option value="😅">😅</option>
+                    <option value="😂">😂</option>
+                    <option value="😇">😇</option>
+                    <option value="🥰">🥰</option>
+                    <option value="😞">😞</option>
+                    <option value="😖">😖</option>
+                    <option value="🥺">🥺</option>
+                    <option value="🤯">🤯</option>
+                    <option value="🥵">🥵</option>
+                    <option value="😰">😰</option>
+                    <option value="😱">😱</option>
+                    <option value="🤬">🤬</option>
+                </select>
+                <!--<input id="text1" type ="text" name="data" value="Enter Text">-->
+                <br /><br />
+                <input id="colorPicker" type="color" name="color"><br /><br />
+                <textarea id="textfield"  name="longtext"></textarea><br /><br />
+                <input id="button" type ="submit" name ="submit" value="submit">
+            </form>
+            <hr>
+            <div>
+                search<br />
+                <form method="GET" action="/search">
+                    <input type="date" id="dateInput2" name="q" value="2018-07-22" min="2021-01-01" max="2021-12-31">
+                    <br /><br />
+                    <input id="button" type="submit" value="search">
+                </form>
+            </div>
+        </body>
+    
+</html>
