@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title><%= data.text %></title>
+        <style>
+            body{
+                font-size: 4.5vh; 
+                font-family: 'Courier New', Courier, monospace; 
+                position: absolute; 
+                top: 2vh; 
+                right: 2vw; 
+                left: 2vw; 
+                text-align: justify;
+             }
+
+        </style>
+    </head>
+    <body>
+        <h1 style="color: <%= data.color %>""><%= data.emoji %><%= data.date %></h1>
+        <p>
+            <%= data.longtext %>
+        </p> 
+    </body>
+</html>
