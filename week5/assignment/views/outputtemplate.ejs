@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>data˜˜˜˜˜</title>
+        <style>
+            body{
+                font-size: 4.5vh; 
+                font-family: 'Courier New', Courier, monospace; 
+                position: absolute; 
+                top: 2vh; 
+                right: 2vw; 
+                left: 2vw; 
+                text-align: justify;
+             }
+
+        </style>
+        <!--
+        <script type="text/javascript">
+        window.addEventListener('load',init);
+       function init(){
+           let currentDate=new Date();
+           let date=currentDate.getFullYear()+'-0'+(currentDate.getMonth()+1)+'-'+currentDate.getDate(); 
+           console.log(date);
+           document.getElementById("dateInput").value = date;
+           document.getElementById("dateInput2").value = date;
+       }
+        </script>-->
+    </head>
+    <body>
+        <form method="POST" action="/formdata">
+        <% if(data.length>0){ %>
+            <% for(var i = 0; i<data.length; i++){ %>
+                <span id="dataout<%=i%>"><a href="/displayrecord?_id=<%= data[i]._id %>""><%=data[i].userId+data[i].emoji+data[i].date%></a></span>
+          <%  } %>
+        <% } %>
+    
+    </body>
+</html>

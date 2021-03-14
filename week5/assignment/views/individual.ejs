@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title><%= data.text %></title>
+        <style>
+            body{
+                font-size: 4.5vh; 
+                font-family: 'Courier New', Courier, monospace; 
+                position: absolute; 
+                top: 2vh; 
+                right: 2vw; 
+                left: 2vw; 
+                text-align: justify;
+             }
+            img{
+                width: 50vw;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="color: <%= data.color %>""><%= data.emoji %><%= data.date %></h1>
+        <p>
+            <%= data.longtext %>
+        </p> 
+        <% if(data.file != null){ %>
+            <img src="/uploads/<%= data.file.filename %>">
+        <% } %>
+
+        <!-- <% if(data.length>0){ %>
+            <% for(var i = 0; i<data.length; i++){ %>
+                <span id="dataout<%=i%>"><a style="color: <%=data[i].color %>; text-decoration:none;"  href="/displayrecord?_id=<%= data[i]._id %>""><%=data[i].emoji+data[i].date%></a></span>
+          <%  } %>
+        <% } %> -->
+        <!-- <pre>
+            <%= JSON.stringify(data.file) %>
+        </pre> -->
+    </body>
+</html>

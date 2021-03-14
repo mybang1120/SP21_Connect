@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<style>
+			body{
+				font-family: 'Courier New', Courier, monospace; 
+				color:rgb(0, 0, 0); 
+				position: absolute; 
+				top: 7vh; 
+				left: 7vw; 
+				right:7vw;
+				font-size: 2hw;
+			}
+			#textfield{
+				border-color: black;
+				background-color: rgb(255, 255, 255);
+				font-family: 'Courier New', Courier, monospace;
+				width:30vw;
+				height: 3vh;
+				border-radius:0px;
+			}
+			.line1{
+				height: 4vh;
+			}
+		   
+		</style>
+	</head>
+  <body>
+	<form action="/register" method="POST">
+		Choose Username: <input type="text" name="username"><br />
+		Choose Password: <input type="password" name="password"><br /><br />
+		<input type="submit" name="submit" value="Submit"><br />
+	</form>		
+  </body>
+</html>

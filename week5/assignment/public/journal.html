@@ -1,0 +1,84 @@
+<html>
+    <title>JOURNAL</title>
+    <style>
+        body{
+            font-family: 'Courier New', Courier, monospace; 
+            color:rgb(0, 0, 0); 
+            position: absolute; 
+            top: 7vh; 
+            left: 7vw; 
+            right:7vw;
+            font-size: 2hw;
+        }
+        #textfield{
+            border-color: black;
+            background-color: rgb(255, 255, 255);
+            font-family: 'Courier New', Courier, monospace;
+            width:30vw;
+            height: 3vh;
+            border-radius:0px;
+        }
+        .line1{
+            height: 4vh;
+        }
+       
+    </style>
+    <script type="text/javascript">
+
+        window.addEventListener('load',init);
+       function init(){
+           let currentDate=new Date();
+           let date=currentDate.getFullYear()+'-0'+(currentDate.getMonth()+1)+'-'+currentDate.getDate(); 
+           console.log(date);
+           document.getElementById("dateInput").value = date;
+        //    document.getElementById("dateInput2").value = date;
+       }
+
+    //    function sendData(){
+    //         fetch('/formdata?dateResult='+dateResult.value+"&emoji="+emoji.value+"&text="+text.value)
+    //         .then(response => response.json())
+    //         .then(data => populateMessages(data));
+    //    }
+    //    function populateMessages(newmessages){
+    //        dateAndEmoji.innerHTML="";
+    //        for(var i = 0; i<newmessages.length; i++){
+    //         dateAndEmoji.innerHTML += newmessages[i].emoji+newmessages[i].date+"  "+newmessages[i].text;
+    //         dateAndEmoji.innerHTML += "<br />"
+    //        }
+    //    }
+   </script>
+    <body>
+        <div id="maintitle" style="font-size:1.5vw; color:rgb(0, 0, 0); font-style:bold">Emoji Journal</div>
+            <form method="POST" action="/formdata" enctype="multipart/form-data">
+                <label for="data">Select emoji and color that describe your feeling today</label>
+                <br /><br />
+                
+                <input class ="line1" type="date" id="dateInput" name="cal" value="2018-07-22" min="2021-01-01" max="2021-12-31">
+        
+                <select class="line1" id="emojis" name="emoji" style="font-size:17px;">
+                    <option value="😀" selected>😀</option>
+                    <option value="😆">😆</option>
+                    <option value="😅">😅</option>
+                    <option value="😂">😂</option>
+                    <option value="😇">😇</option>
+                    <option value="🥰">🥰</option>
+                    <option value="😞">😞</option>
+                    <option value="😖">😖</option>
+                    <option value="🥺">🥺</option>
+                    <option value="🤯">🤯</option>
+                    <option value="🥵">🥵</option>
+                    <option value="😰">😰</option>
+                    <option value="😱">😱</option>
+                    <option value="🤬">🤬</option>
+                </select>
+                <br /><br />
+                <textarea id="textfield" name="longtext"> </textarea><br /><br />
+                photo of the day: <input type="file" id="photo" name="photo"><br /><br />
+                <input id="submit" type ="submit" name ="submit" value="submit">
+            </form>		
+            <form method="GET" action="/logout">
+                <input type="submit" name="logout" value="logout"><br />
+            </form>
+        </body>
+    
+</html>
