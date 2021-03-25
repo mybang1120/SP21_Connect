@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="">
+        <title>where?</title>
+
+        <!-- jquery -->
+        <style>
+            #map {
+                overflow: auto;
+                height: 90vh;
+                top: 30px;
+                }
+            body {
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                }
+            #place{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                color: black;
+                width: 40vw;
+                top: 24px;
+                left: 24px;
+                border-style: none;
+                border-radius: 0px;
+            }
+            #logout{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                color: black;
+                background-color: white;
+                border-style: none;
+                border-radius: 0px;
+                right: 30px;
+                top: 24px;
+                cursor: pointer;
+            }
+            #submit{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                color: black;
+                background-color: white;
+                border-style: none;
+                border-radius: 0px;
+                right: 120px;
+                top: 24px;
+                cursor: alias;
+            }
+        </style>       
+
+        <!-- google map -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChhWt9i0YwW1EM1m_skTUgBW4xA4JsOo0&callback=initMap&libraries=places&v=weekly" async defer></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+        <!-- javascript -->
+        <script>
+        // loading google map
+        let map; 
+        // const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // let labelIndex = 0;
+        let markers = [];            //marker array
+        let initialLocation;
+        let service;
+        const iconBase = "http://maps.google.com/mapfiles/kml/paddle/";
+        const icons = ["ltblu-blank.png","pink-blank.png", "blu-blank.png", "ylw-blank.png","orange-blank.png","wht-blank.png", "grn-blank.png","purple-blank.png"];
+
+        function initMap(){
+            map = new google.maps.Map(document.getElementById("map"), {
+                mapTypeId: 'hybrid',
+                zoom: 8,
+                mapTypeControl: false,
+                scaleControl: false,
+                rotateControl: false,
+                fullscreenControl: false,
+                style:
+                [
+                    {
+                        "featureType": "poi.business",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.government",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.medical",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.place_of_worship",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.school",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.sports_complex",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "stylers": [
+                        {
+                            "visibility": "simplified"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.text",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "labels.text",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                        ]
+                    }
+                ]
+            });
+
+            // get current user location when loading
+            if (navigator.geolocation) {
+              
+                navigator.geolocation.getCurrentPosition(
+                    function(position){
+                        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        map.setCenter(initialLocation);
+                        marker = new google.maps.Marker({
+                            position: initialLocation,
+                            icon: "http://earth.google.com/images/kml-icons/track-directional/track-8.png",
+                            map: map,
+                            title: "You are here!"
+                        });
+                        
+                    });
+                }
+                const geocoder = new google.maps.Geocoder();
+                console.log(geocoder)
+
+                google.maps.event.addListener(map, "click", (event) => {
+                    let clicked_latLng = JSON.stringify(event.latLng.toJSON(), null, 2);
+                    console.log(clicked_latLng);
+                    let cur_pos = event.latLng;
+                    addMarker(event.latLng, map);
+                    geocodeLatLng(geocoder, cur_pos, map);
+                });
+            }    
+
+            function geocodeLatLng(geocoder, cur_pos, map){    
+                geocoder.geocode({location: cur_pos}, (results, status) => {
+                    if(status === "OK"){
+                        if(results[0]){
+                            // document.getElementById("place").value = results[0].address_components[2].short_name;
+                            document.getElementById("place").value = results[0].formatted_address;
+                        }else{
+                            window.alert("No results found");
+                        }
+                    }else{
+                            window.alert("Geocoder failed die to: "+ status);
+                    }
+                    //place name search
+                    const request = {
+                        query: "",
+                        fields: ["name", "geometry"]
+                    };
+                    // console.log(request);
+                    service = new google.maps.places.PlacesService(map);
+                    service.findPlaceFromQuery(request, (results, status) => {
+                        if(status === google.maps.places.PlacesServiceStatus.OK && results){
+                            // console.log(results);
+                        }
+                    });
+                });
+            }
+
+            function addMarker(location, map) {
+                // Add the marker at the clicked location, and add the next-available label
+                // from the array of alphabetical characters.
+                let ran_icon = Math.floor((Math.random() * icons.length) );
+                console.log("icon num: "+ ran_icon);
+                var new_marker = new google.maps.Marker({
+                    position: location,
+                    // label: labels[labelIndex++ % labels.length],
+                    map: map,
+                    icon: iconBase+icons[ran_icon],
+                    // draggable: true,
+                    click_removed: true
+                });
+                markers.push(new_marker);
+                console.log(iconBase+icons[ran_icon]);
+
+            }
+
+            function clearMarkers() {
+                setMapOnAll(null);
+            }
+            function deleteMarkers() {
+                clearMarkers();
+                markers = [];
+            }
+
+        
+        </script>
+        </head>
+        <body>
+                <form method="POST" action="/map">
+                    <input type="text" id="place" name="place">
+                    <input type="submit" id="submit" name="submit" value="select"><br />
+                </form>
+                <form method="GET" action="/logout">
+                    <input type="submit" name="logout" id="logout" value="logout"><br />
+                </form>
+            
+            <div id="map" class="map"></div>
+          
+            
+            
+            
+            
+        </body>
+  
+</html>

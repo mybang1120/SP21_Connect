@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript">
+            window.addEventListener('load', init);
+            function init(){
+              let modal1= document.getElementById("blocks");
+              modal1.addEventListener('mouseover', colorChange);
+              modal1.addEventListener('mouseout', back);
+
+
+              function colorChange(){
+                  let colorR=  Math.floor((Math.random() * 255) );
+                  let colorG=  Math.floor((Math.random() * 255) );
+                  let colorB=  Math.floor((Math.random() * 255) );
+                  this.style.color = "rgb("+colorR+","+colorG+","+colorB+")";
+              }
+              function back(){
+                  this.style.color = "rgb(0,0,0)";
+              }
+            };
+        </script>
+        <style>
+            body{
+                font-size: 15px; 
+                font-family:Arial, Helvetica, sans-serif;
+                position: absolute; 
+                top: 2vh; 
+                right: 2vw; 
+                left: 2vw; 
+                text-align: justify;
+            }
+            #username{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px; 
+                color: black;
+                font-weight: bold;
+            }
+            #submit{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border-style: none;
+                border-radius: 0px;
+                right: 0px;
+                top: 3px;
+                cursor: pointer;
+                padding: 5px;
+                padding-left:10px;
+                padding-right:  5px;
+            }
+          
+        </style>
+    </head>
+    <body> 
+        <div id="username"> hello!         <%= data[0].userId %> </div>
+        <br /><br />
+        <form method="POST" action="/display">
+           <div id="blocks" style="width:36vw;">
+            <% if(data.length>0){ %>
+                <% for(var i = 0; i<data.length; i++){ %>
+                    <div id = "dataout" id="modal<%=i%>" class="modal<%=i%>" 
+                        style=
+                        "display: block;
+                        z-index: 1;
+                        width: 35vw;
+                        height: 100%;
+                        font-size: 30px;
+                        text-align: center;
+                        top: 300*<%=i%>px;
+                        border: solid;
+                        transform: rotate(<%=i%>turn);
+                        ">
+                        <div class="content<%=i%>" 
+                            style=
+                            "margin: auto; 
+                            padding: 15px;
+                             letter-spacing: 1px"> 
+                             <span id="ticket">
+                                <%= data[i].place %>
+                            </span>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+        </form>
+        <form method="GET" action="/logout">
+            <input type="submit" id="submit" name="logout" value="logout"><br />
+        </form>
+    </body>
+</html>
+

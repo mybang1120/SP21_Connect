@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="">
+        <title>where?</title>
+
+        <!-- jquery -->
+        <style>
+            #map {
+                overflow: auto;
+                height: 500px;
+                width: 500px;
+                top: 0px;
+                }
+            body {
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                }
+            #submit{
+                position: absolute;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 20px;
+                color: white;
+                background-color: black;
+                border-style: none;
+                border-radius: 0px;
+                cursor: pointer;
+                z-index: 1; 
+            }
+        </style>       
+
+        <!-- google map -->
+       
+        </head>
+        <body>
+            <form method="POST" action="/display">
+                <% if(data.length>0){ %>
+                    <% for(var i = 0; i<data.length; i++){ %>
+                        <div id = "dataout <%=i%>"><%= data[i].userId+data[i].place %></div>
+                    <% } %>
+                <% } %>
+            </form>
+            <!-- <form method="POST" action="/display">
+                <input type="text" id="place" name="place">
+                <input type="submit" name="submit" value="submit"><br />
+            </form> -->
+
+            <form method="GET" action="/logout">
+                <input type="submit" id="submit" name="logout" value="logout"><br />
+            </form>
+            
+        </body>
+  
+</html>
